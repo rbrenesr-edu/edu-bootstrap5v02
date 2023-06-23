@@ -15,7 +15,7 @@ pipeline {
         stage('Mover a carpeta temporal') {
             steps {
                 // Mover el directorio clonado a la carpeta temporal                
-                bat 'xcopy /E /I /Y .\\edu-bootstrap5\\ C:\\Sites\\temp\\'
+                bat 'xcopy /E /I /Y .\\edu-bootstrap5\\* C:\\Sites\\temp\\'
             }
         }
     }
