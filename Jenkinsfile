@@ -1,19 +1,21 @@
 
+
+
 pipeline {
     agent any
     
     stages {
         stage('Clonar Repositorio') {
             steps {
-                // Clonar el repositorio de GitHub en la carpeta temporal
+                // Clonar el repositorio de GitHub en la carpeta de trabajo actual
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/rbrenesr/edu-bootstrap5.git']]])
             }
         }
         
-        stage('Copiar archivos') {
+        stage('Mover a carpeta temporal') {
             steps {
-                // Copiar los archivos del repositorio a una carpeta en disco C
-                bat 'xcopy /E /I /Y %TEMP% C:\\Sites\\temp'
+                // Mover el directorio clonado a la carpeta temporal
+                bat 'move .\\edu-bootstrap5 C:\\Sites\\temp'
             }
         }
     }
